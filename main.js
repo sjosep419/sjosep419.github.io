@@ -134,113 +134,113 @@ function createGraph(){
     return svg.node();
     }
 
-    function barChart() {
-        // set up
+    // function barChart() {
+    //     // set up
         
-        const margin = {top: 10, right: 20, bottom: 50, left: 90};
+    //     const margin = {top: 10, right: 20, bottom: 50, left: 90};
         
-        const visWidth = 400;
-        const visHeight = 200;
+    //     const visWidth = 400;
+    //     const visHeight = 200;
       
-        const svg = d3.select(document.getElementById("barPlot"))
-            .append('svg')
-            .attr('width', visWidth + margin.left + margin.right)
-            .attr('height', visHeight + margin.top + margin.bottom);
+    //     const svg = d3.select(document.getElementById("barPlot"))
+    //         .append('svg')
+    //         .attr('width', visWidth + margin.left + margin.right)
+    //         .attr('height', visHeight + margin.top + margin.bottom);
       
-        const g = svg.append("g")
-            .attr("transform", `translate(${margin.left}, ${margin.top})`);
+    //     const g = svg.append("g")
+    //         .attr("transform", `translate(${margin.left}, ${margin.top})`);
       
-        svg.append("text")
-         .attr("x", visWidth/2 + 100)
-         .attr("y", 15)
-         .attr("text-anchor", "middle")
-         .style("font-size", "16px")
-         .text("Total Bike Counts");
-        // create scales
+    //     svg.append("text")
+    //      .attr("x", visWidth/2 + 100)
+    //      .attr("y", 15)
+    //      .attr("text-anchor", "middle")
+    //      .style("font-size", "16px")
+    //      .text("Total Bike Counts");
+    //     // create scales
         
-        const x = d3.scaleLinear()
-            .range([0, visWidth]);
+    //     const x = d3.scaleLinear()
+    //         .range([0, visWidth]);
         
-        const y = d3.scaleBand()
-            .domain(bikeColor.domain())
-            .range([0, visHeight])
-            .padding(0.2);
+    //     const y = d3.scaleBand()
+    //         .domain(bikeColor.domain())
+    //         .range([0, visHeight])
+    //         .padding(0.2);
         
-        // create and add axes
+    //     // create and add axes
         
-        const xAxis = d3.axisBottom(x).tickSizeOuter(0);
+    //     const xAxis = d3.axisBottom(x).tickSizeOuter(0);
         
-        const xAxisGroup = g.append("g")
-            .attr("transform", `translate(0, ${visHeight})`);
+    //     const xAxisGroup = g.append("g")
+    //         .attr("transform", `translate(0, ${visHeight})`);
         
-        xAxisGroup.append("text")
-            .attr("x", visWidth / 2)
-            .attr("y", 40)
-            .attr("fill", "black")
-            .attr("text-anchor", "middle")
-            .text("Count");
+    //     xAxisGroup.append("text")
+    //         .attr("x", visWidth / 2)
+    //         .attr("y", 40)
+    //         .attr("fill", "black")
+    //         .attr("text-anchor", "middle")
+    //         .text("Count");
         
-        const yAxis = d3.axisLeft(y);
+    //     const yAxis = d3.axisLeft(y);
         
-        const yAxisGroup = g.append("g")
-            .call(yAxis)
-            // remove baseline from the axis
-            .call(g => g.select(".domain").remove());
+    //     const yAxisGroup = g.append("g")
+    //         .call(yAxis)
+    //         // remove baseline from the axis
+    //         .call(g => g.select(".domain").remove());
           
-        let barsGroup = g.append("g");
+    //     let barsGroup = g.append("g");
       
-        function update(data) {
+    //     function update(data) {
           
-          // get the number of cars for each origin
-          const bikeCounts = d3.rollup(
-            data,
-            group => group.length,
-            d => d.bike
-          );
+    //       // get the number of cars for each origin
+    //       const bikeCounts = d3.rollup(
+    //         data,
+    //         group => group.length,
+    //         d => d.bike
+    //       );
       
-          // update x scale
-          x.domain([0, d3.max(bikeCounts.values())]).nice()
+    //       // update x scale
+    //       x.domain([0, d3.max(bikeCounts.values())]).nice()
       
-          // update x axis
+    //       // update x axis
       
-          const t = svg.transition()
-              .ease(d3.easeLinear)
-              .duration(200);
+    //       const t = svg.transition()
+    //           .ease(d3.easeLinear)
+    //           .duration(200);
       
-          xAxisGroup
-            .transition(t)
-            .call(xAxis);
+    //       xAxisGroup
+    //         .transition(t)
+    //         .call(xAxis);
           
-          // draw bars
-          barsGroup.selectAll("rect")
-            .data(bikeCounts, ([bike, count]) => bike)
-            .join("rect")
-              .attr("fill", ([bike, count]) => bikeColor(bike))
-              .attr("height", y.bandwidth())
-              .attr("x", 0)
-              .attr("y", ([bike, count]) => y(bike))
-            .transition(t)
-              .attr("width", ([bike, count]) => x(count))
-        }
+    //       // draw bars
+    //       barsGroup.selectAll("rect")
+    //         .data(bikeCounts, ([bike, count]) => bike)
+    //         .join("rect")
+    //           .attr("fill", ([bike, count]) => bikeColor(bike))
+    //           .attr("height", y.bandwidth())
+    //           .attr("x", 0)
+    //           .attr("y", ([bike, count]) => y(bike))
+    //         .transition(t)
+    //           .attr("width", ([bike, count]) => x(count))
+    //     }
         
-        return Object.assign(svg.node(), { update });;
-    }
+    //     return Object.assign(svg.node(), { update });;
+    // }
 
     {
         const scatter = brushableScatterplot();
-        const bar = barChart();
+        // const bar = barChart();
       
-        // update the bar chart when the scatterplot
-        // selection changes
-        d3.select(scatter).on('input', () => {
-          bar.update(scatter.value);
-        });
+        // // update the bar chart when the scatterplot
+        // // selection changes
+        // d3.select(scatter).on('input', () => {
+        //   bar.update(scatter.value);
+        // });
       
-        // intial state of bar chart
-        bar.update(scatter.value);
+        // // intial state of bar chart
+        // bar.update(scatter.value);
       
-        // use HTML to place the two charts next to each other
-        // return html`<div style="display: flex">${scatter}${bar}</div>`;
+        // // use HTML to place the two charts next to each other
+        // // return html`<div style="display: flex">${scatter}${bar}</div>`;
       }
 }
 

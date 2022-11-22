@@ -15,10 +15,10 @@ new Runtime().module(define, name => {
 
 
 function display2018() {
-    document.getElementById('viz').innerHTML = html`<div id="observablehq-chart1-a355ad55"></div>`;
+    Document.getElementById('viz').innerHTML = html`<div id="observablehq-chart1-a355ad55"></div>`;
 }
 
 
 function display2020() {
-    document.getElementById('viz').innerHTML = html`<div id="observablehq-chart2-a355ad55"></div>`;
+    Document.getElementById('viz').innerHTML = html`<div id="observablehq-chart2-a355ad55"></div>`;
 }

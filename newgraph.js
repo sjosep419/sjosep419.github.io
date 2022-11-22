@@ -15,11 +15,11 @@ new Runtime().module(define, name => {
 });
 
 
-function display2018() {
-    Document.getElementById('viz').innerHTML = html`<div id="observablehq-chart1-b580c0ef"></div>`;
-}
+// function display2018() {
+//     Document.getElementById('viz').innerHTML = html`<div id="observablehq-chart1-b580c0ef"></div>`;
+// }
 
 
-function display2020() {
-    Document.getElementById('viz').innerHTML = html`<div id="observablehq-chart2-b580c0ef"></div>`;
-}
+// function display2020() {
+//     Document.getElementById('viz').innerHTML = html`<div id="observablehq-chart2-b580c0ef"></div>`;
+// }

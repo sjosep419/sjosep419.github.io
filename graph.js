@@ -1,9 +1,16 @@
+// import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+// import define from "https://api.observablehq.com/d/ffb3099e2ba5dd91@350.js?v=3";
+// new Runtime().module(define, name => {
+//   if (name === "chart1") return new Inspector(document.querySelector("#observablehq-chart1-b580c0ef"));
+//   if (name === "chart2") return new Inspector(document.querySelector("#observablehq-chart2-b580c0ef"));
+//   return ["focus1","focus2"].includes(name);
+// });
+
 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
 import define from "https://api.observablehq.com/d/ffb3099e2ba5dd91@350.js?v=3";
 new Runtime().module(define, name => {
-  if (name === "chart1") return new Inspector(document.querySelector("#observablehq-chart1-b580c0ef"));
-  if (name === "chart2") return new Inspector(document.querySelector("#observablehq-chart2-b580c0ef"));
-  return ["focus1","focus2"].includes(name);
+  if (name === "chart1") return new Inspector(document.querySelector("#observablehq-chart1-c23b8e9f"));
+  return ["focus1"].includes(name);
 });
 
 

@@ -65,7 +65,7 @@ function LineChart(data, {
   
     // Create a svg with dimension constrains.
     const svg = d3.select("chart")
-        .append("svg:svg")
+        // .append("svg:svg")
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", [0, 0, width, height])
@@ -93,9 +93,9 @@ function LineChart(data, {
         .attr("transform", `translate(${marginLeft},0)`)
         .call(yAxis)
         .call(g => g.select(".domain").remove())
-        .call(voronoi ? () => {} : g => g.selectAll(".tick line").clone()
-            .attr("x2", width - marginLeft - marginRight)
-            .attr("stroke-opacity", 0.1))
+        // .call(voronoi ? () => {} : g => g.selectAll(".tick line").clone()
+        //     .attr("x2", width - marginLeft - marginRight)
+        //     .attr("stroke-opacity", 0.1))
         .call(g => g.append("text")
             .attr("x", -marginLeft)
             .attr("y", 30)

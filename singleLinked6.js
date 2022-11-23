@@ -65,6 +65,7 @@ function LineChart(data, {
   
     // Create a svg with dimension constrains.
     const svg = d3.select("chart")
+        .append("svg:svg")
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", [0, 0, width, height])

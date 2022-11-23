@@ -158,7 +158,7 @@ function LineChart(data, {
       svg.dispatch("input", {bubbles: true});
     }
     
-    return Object.assign(svg.node(), {value: null});
+    // return Object.assign(svg.node(), {value: null});
   }
 
   function init() {

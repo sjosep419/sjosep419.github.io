@@ -42,7 +42,7 @@ function LineChart(data, {
     if (xDomain === undefined) xDomain = d3.extent(X);
     if (yDomain === undefined) yDomain = [0, d3.max(Y, d => typeof d === "string" ? +d : d)];
     if (zDomain === undefined) zDomain = Z;
-    zDomain = new d3.InternSet(zDomain);
+    zDomain = new d3.InternSet(Object.keys(zDomain));
   
     // Omit any data not present in the z-domain.
     const I = d3.range(X.length).filter(i => zDomain.has(Z[i]));
@@ -170,6 +170,9 @@ function LineChart(data, {
         height:500,
         color: "steelblue"
       })
+      // console.log(x)
+      // console.log(y)
+      // console.log(z)
   }
 
   window.onload = init;

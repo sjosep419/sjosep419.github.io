@@ -21,10 +21,10 @@
     <body>
         <h1>Single-Linked View</h1>
         <div id="chart"></div>
-        <p>Take plz work #25 :(</p>
+        <p>Take plz work #26 :(</p>
 
         <script>
-            function LineChart(data, {
+            function LineChart(data2018, {
                 x = ([x]) => x, // given d in data, returns the (temporal) x-value
                 y = ([, y]) => y, // given d in data, returns the (quantitative) y-value
                 z = () => 1, // given d in data, returns the (categorical) z-value
@@ -55,10 +55,10 @@
                 voronoi // show a Voronoi overlay? (for debugging)
             } = {}) {
                 // Compute values.
-                const X = d3.map(data, x);
-                const Y = d3.map(data, y);
-                const Z = d3.map(data, z);
-                const O = d3.map(data, d => d);
+                const X = d3.map(data2018, x);
+                const Y = d3.map(data2018, y);
+                const Z = d3.map(data2018, z);
+                const O = d3.map(data2018, d => d);
                 if (defined === undefined) defined = (d, i) => !isNaN(X[i]) && !isNaN(Y[i]);
                 const D = d3.map(data, defined);
             
@@ -188,7 +188,7 @@
     </body>
 </html>
 
- -->
+ 
  <!-- <!DOCTYPE html>
  <meta charset="utf-8">
  

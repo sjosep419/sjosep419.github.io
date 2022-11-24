@@ -86,7 +86,7 @@ function LineChart(data, {
     //       .render());
   
     svg.append("g")
-        .attr("transform", `translate(0,${height - marginBottom})`)
+        //.attr("transform", `translate(0,${height - marginBottom})`)
         .call(xAxis);
   
     svg.append("g")

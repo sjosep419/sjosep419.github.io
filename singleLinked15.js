@@ -39,8 +39,8 @@ function LineChart(data, {
     const D = d3.map(data, defined);
   
     // Compute default domains, and unique the z-domain.
-    if (xDomain === undefined) xDomain = d3.extent(Object.keys(X));
-    if (yDomain === undefined) yDomain = [0, d3.max(Object.keys(Y))];
+    if (xDomain === undefined) xDomain = d3.extent(X);
+    if (yDomain === undefined) yDomain = [0, d3.max(Y, d => typeof d === "string" ? +d : d)];
     if (zDomain === undefined) zDomain = Z;
     zDomain = new d3.InternSet(Object.keys(zDomain));
   

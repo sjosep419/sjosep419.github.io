@@ -86,11 +86,11 @@ function LineChart(data, {
     //       .render());
   
     svg.append("g")
-        .attr("transform", translate(0,height - marginBottom))
+        .attr("transform", "translate(0," + (height - marginBottom) + ")")
         .call(xAxis);
   
     svg.append("g")
-        .attr("transform", translate(marginLeft,0))
+        .attr("transform", "translate(marginLeft,0)")
         .call(yAxis)
         .call(g => g.select(".domain").remove())
         // .call(voronoi ? () => {} : g => g.selectAll(".tick line").clone()

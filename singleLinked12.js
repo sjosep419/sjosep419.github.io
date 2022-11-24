@@ -76,14 +76,14 @@ function LineChart(data, {
         .on("pointerleave", pointerleft)
         .on("touchstart", event => event.preventDefault());
   
-    // An optional Voronoi display.
-    if (voronoi) svg.append("path")
-        .attr("fill", "none")
-        .attr("stroke", "#ccc")
-        .attr("d", d3.Delaunay
-          .from(I, i => xScale(X[i]), i => yScale(Y[i]))
-          .voronoi([0, 0, width, height])
-          .render());
+    // // An optional Voronoi display.
+    // if (voronoi) svg.append("path")
+    //     .attr("fill", "none")
+    //     .attr("stroke", "#ccc")
+    //     .attr("d", d3.Delaunay
+    //       .from(I, i => xScale(X[i]), i => yScale(Y[i]))
+    //       .voronoi([0, 0, width, height])
+    //       .render());
   
     svg.append("g")
         .attr("transform", `translate(0,${height - marginBottom})`)
@@ -113,10 +113,10 @@ function LineChart(data, {
     const path = svg.append("g")
         .attr("fill", "none")
         .attr("stroke", typeof color === "string" ? color : null)
-        .attr("stroke-linecap", strokeLinecap)
-        .attr("stroke-linejoin", strokeLinejoin)
+        // .attr("stroke-linecap", strokeLinecap)
+        // .attr("stroke-linejoin", strokeLinejoin)
         .attr("stroke-width", strokeWidth)
-        .attr("stroke-opacity", strokeOpacity)
+        // .attr("stroke-opacity", strokeOpacity)
         .selectAll("path")
         .data(d3.group(I, i => Z[i]))
         .enter().append("path")

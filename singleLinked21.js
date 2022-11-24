@@ -40,7 +40,7 @@ function LineChart(data, {
   
     // Compute default domains, and unique the z-domain.
     xDomain = d3.extent(Object.keys(X));
-    yDomain = [0, d3.max(Object.keys(Y), d => typeof d === "string" ? +d : d)];
+    yDomain = [0, d3.max(Object.keys(Y))];
     zDomain = Z;
     zDomain = new d3.InternSet(Object.keys(zDomain));
   
@@ -176,4 +176,4 @@ function LineChart(data, {
       // console.log(z)
   }
 
-  window.onload = init;
+  // window.onload = init;

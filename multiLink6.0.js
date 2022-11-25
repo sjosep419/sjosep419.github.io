@@ -1,4 +1,4 @@
-function pieChart(data) {
+function pieChart() {
     // set the dimensions and margins of the graph
     var width = 450
     height = 450
@@ -16,9 +16,9 @@ function pieChart(data) {
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
     // create 2 data_set
-    var data1 = {a: 9, b: 20, c:30, d:8, e:12}
-    var data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
-    var data3 = {a: 2, b: 4, c:2, d:4, e:1, f:6}
+    // var data1 = {a: 9, b: 20, c:30, d:8, e:12}
+    // var data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
+    // var data3 = {a: 2, b: 4, c:2, d:4, e:1, f:6}
 
     // set the color scale
     var color = d3.scaleOrdinal()
@@ -59,15 +59,15 @@ function pieChart(data) {
 
     }
     // Initialize the plot with the first dataset
-    pieupdate(data)
+    pieupdate(data1)
 }
 
 
 function lineChart() {
     // create 2 data_set
-    var data1 = {a: 9, b: 20, c:30, d:8, e:12}
-    var data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
-    var data3 = {a: 2, b: 4, c:2, d:4, e:1, f:6}
+    // var data1 = {a: 9, b: 20, c:30, d:8, e:12}
+    // var data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
+    // var data3 = {a: 2, b: 4, c:2, d:4, e:1, f:6}
 
     // set the dimensions and margins of the graph
     var margin = {top: 10, right: 100, bottom: 30, left: 30},
@@ -173,7 +173,7 @@ function lineChart() {
 }
 
 function init() {
-    pieChart(data1);
+    pieChart();
     lineChart();
 }
 window.onload = init;

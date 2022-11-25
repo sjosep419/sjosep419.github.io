@@ -13,8 +13,7 @@
         <!-- Initialize a select button -->
         <select id="selectButton"></select>
         <!-- Create a div where the graph will take place -->
-        <div id="my_dataviz"></div>
-        <div id="pie_my_dataviz"></div>
+        <div style="display: flex"><div id="my_dataviz"></div><div id="pie_my_dataviz"></div></div>
 
         <!-- --------------------------------------------------------------------------- -->
         <!--- New Multi-Link Line + Pie chart-->>
@@ -186,6 +185,7 @@
                     var selectedOption = d3.select(this).property("value")
                     // run the updateChart function with this selected option
                     update(selectedOption)
+
                     if (selectedOption == "UIC") {
                         pieupdate(data1)
                     } else if (selectedOption == "DePaul") {
@@ -199,6 +199,6 @@
             
             </script>
             <!-- --------------------------------------------------------------------------- -->
-        <p>two graphs!</p>
+        <p>please work!</p>
     </body>
 </html>

@@ -1,4 +1,4 @@
-function pieChart(data) {
+function pieChart() {
     // set the dimensions and margins of the graph
     var width = 450
     height = 450
@@ -59,7 +59,7 @@ function pieChart(data) {
 
     }
     // Initialize the plot with the first dataset
-    pieupdate(data)
+    pieupdate(data1)
 }
 
 
@@ -178,15 +178,15 @@ function init() {
 }
 
 function changeToUIC() {
-    pieChart(data1);
+    pieChart.pieupdate(data1);
 }
 
 function changeToDePaul() {
-    pieChart(data2);
+    pieChart.pieupdate(data2);
 }
 
 function changeToLoyola() {
-    pieChart(data3);
+    pieChart.pieupdate(data3);
 }
 
 window.onload = init;

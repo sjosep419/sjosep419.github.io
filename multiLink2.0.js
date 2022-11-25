@@ -175,3 +175,4 @@ function lineChart() {
 function init() {
     pieChart();
 }
+window.onload()

@@ -176,4 +176,17 @@ function init() {
     pieChart(data1);
     lineChart();
 }
+
+function changeToUIC() {
+    pieChart(data1);
+}
+
+function changeToDePaul() {
+    pieChart(data2);
+}
+
+function changeToLoyola() {
+    pieChart(data3);
+}
+
 window.onload = init;

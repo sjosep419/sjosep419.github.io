@@ -6,7 +6,7 @@
         <script src="https://d3js.org/d3.v4.js"></script>
         <!-- Color Scale -->
         <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-        <script src="multiLink4.0.js"></script>
+        <script src="multiLink5.0.js"></script>
         <script src="pieChartData.js"></script>
         <style>
             /* #pie_my_dataviz{
@@ -31,9 +31,9 @@
     </head>
     <body>
         <h1>CS 424 Project 3 : Divvy Bike</h1>
-        <button onclick="pieChart.pieupdate(data1)">UIC</button>
-        <button onclick="pieChart.pieupdate(data2)">DePaul</button>
-        <button onclick="pieChart.pieupdate(data3)">Loyola</button>
+        <button onclick="pieChart(data1)">UIC</button>
+        <button onclick="pieChart(data2)">DePaul</button>
+        <button onclick="pieChart(data3)">Loyola</button>
         <div class="float-container">
             <div class="float-child">
                 <div id="my_dataviz"></div>
@@ -45,6 +45,6 @@
         
         <!-- --------------------------------------------------------------------------- -->
         <!--- New Multi-Link Line + Pie chart-->
-        <p> Let's see interactivity take 4!</p>
+        <p> Let's see interactivity take 3!</p>
     </body>
 </html>

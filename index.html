@@ -1,92 +1,127 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="//d3js.org/d3.v3.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script>
-        <script src="https://cdn.jsdelivr.net/npm/d3-color@3"></script>
-        <script src="https://cdn.jsdelivr.net/npm/d3-format@3"></script>
-        <script src="https://cdn.jsdelivr.net/npm/d3-interpolate@3"></script>
-        <script src="https://cdn.jsdelivr.net/npm/d3-time@3"></script>
-        <script src="https://cdn.jsdelivr.net/npm/d3-time-format@4"></script>
-        <script src="https://cdn.jsdelivr.net/npm/d3-scale@4"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
-        <script src ="https://d3js.org/d3.v4.min.js"></script>
-        <script type = "text/javascript" src ="https://d3js.org/d3-axis.v1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/d3-selection@3"></script>
-        <script src="data2018.js"></script>
-        <script src="singleLinked17.js" defer></script>
-
+        <meta charset="utf-8">
+        <!-- Load d3.js -->
+        <script src="https://d3js.org/d3.v4.js"></script>
+        <!-- Color Scale -->
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     </head>
     <body>
-        <h1>Single-Linked View</h1>
-        <svg></svg>
-        <p>Take #26 :(</p>
+        <h1>CS 424 Project 3 : Divvy Bike</h1>
+
+        <!-- Initialize a select button -->
+        <select id="selectButton"></select>
+        <!-- Create a div where the graph will take place -->
+        <div id="my_dataviz"></div>
+
+        <script>
+
+            // set the dimensions and margins of the graph
+            var margin = {top: 10, right: 100, bottom: 30, left: 30},
+                width = 460 - margin.left - margin.right,
+                height = 400 - margin.top - margin.bottom;
+            
+            // append the svg object to the body of the page
+            var svg = d3.select("#my_dataviz")
+              .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+              .append("g")
+                .attr("transform",
+                      "translate(" + margin.left + "," + margin.top + ")");
+            
+            //Read the data
+            d3.csv("csv2020@1.csv", function(data) {
+            
+                // List of groups (here I have one group per column)
+                var allGroup = ["UIC", "DePaul", "Loyola"]
+            
+                // add the options to the button
+                d3.select("#selectButton")
+                  .selectAll('myOptions')
+                     .data(allGroup)
+                  .enter()
+                    .append('option')
+                  .text(function (d) { return d; }) // text showed in the menu
+                  .attr("value", function (d) { return d; }) // corresponding value returned by the button
+            
+                // Add X axis --> it is a date format
+                var x = d3.scaleLinear()
+                  .domain([0,10])
+                  .range([ 0, width ]);
+                svg.append("g")
+                  .attr("transform", "translate(0," + height + ")")
+                  .call(d3.axisBottom(x));
+            
+                // Add Y axis
+                var y = d3.scaleLinear()
+                  .domain( [0,20])
+                  .range([ height, 0 ]);
+                svg.append("g")
+                  .call(d3.axisLeft(y));
+            
+                // Initialize line with group a
+                var line = svg
+                  .append('g')
+                  .append("path")
+                    .datum(data)
+                    .attr("d", d3.line()
+                      .x(function(d) { return x(+d.Date) })
+                      .y(function(d) { return y(+d.UIC) })
+                    )
+                    .attr("stroke", "black")
+                    .style("stroke-width", 4)
+                    .style("fill", "none")
+            
+                // Initialize dots with group a
+                var dot = svg
+                  .selectAll('circle')
+                  .data(data)
+                  .enter()
+                  .append('circle')
+                    .attr("cx", function(d) { return x(+d.Date) })
+                    .attr("cy", function(d) { return y(+d.UIC) })
+                    .attr("r", 7)
+                    .style("fill", "#69b3a2")
+            
+            
+                // A function that update the chart
+                function update(selectedGroup) {
+            
+                  // Create new data with the selection?
+                  var dataFilter = data.map(function(d){return {Date: d.Date, value:d[selectedGroup]} })
+            
+                  // Give these new data to update line
+                  line
+                      .datum(dataFilter)
+                      .transition()
+                      .duration(1000)
+                      .attr("d", d3.line()
+                        .x(function(d) { return x(+d.Date) })
+                        .y(function(d) { return y(+d.value) })
+                      )
+                  dot
+                    .data(dataFilter)
+                    .transition()
+                    .duration(1000)
+                      .attr("cx", function(d) { return x(+d.Date) })
+                      .attr("cy", function(d) { return y(+d.value) })
+                }
+            
+                // When the button is changed, run the updateChart function
+                d3.select("#selectButton").on("change", function(d) {
+                    // recover the option that has been chosen
+                    var selectedOption = d3.select(this).property("value")
+                    // run the updateChart function with this selected option
+                    update(selectedOption)
+                })
+            
+            })
+            
+            
+            </script>
+
+        <p>Take #26 :)</p>
     </body>
 </html>
-
- 
- <!-- <!DOCTYPE html>
- <meta charset="utf-8">
- 
- Load d3.js
- <script src="https://d3js.org/d3.v4.js"></script>
- 
- Create a div where the graph will take place
- <div id="my_dataviz"></div>
-
- <script>
-
-    // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 30, bottom: 30, left: 40},
-        width = 460 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
-    
-    // append the svg object to the body of the page
-    var svg = d3.select("#my_dataviz")
-      .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-        .attr("transform",
-              "translate(" + margin.left + "," + margin.top + ")");
-    
-    // get the data
-    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv", function(data) {
-    
-      // X axis: scale and draw:
-      var x = d3.scaleLinear()
-          .domain([0, 1000])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
-          .range([0, width]);
-      svg.append("g")
-          .attr("transform", "translate(0," + height + ")")
-          .call(d3.axisBottom(x));
-    
-      // set the parameters for the histogram
-      var histogram = d3.histogram()
-          .value(function(d) { return d.price; })   // I need to give the vector of value
-          .domain(x.domain())  // then the domain of the graphic
-          .thresholds(x.ticks(70)); // then the numbers of bins
-    
-      // And apply this function to data to get the bins
-      var bins = histogram(data);
-    
-      // Y axis: scale and draw:
-      var y = d3.scaleLinear()
-          .range([height, 0]);
-          y.domain([0, d3.max(bins, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
-      svg.append("g")
-          .call(d3.axisLeft(y));
-    
-      // append the bar rectangles to the svg element
-      svg.selectAll("rect")
-          .data(bins)
-          .enter()
-          .append("rect")
-            .attr("x", 1)
-            .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
-            .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
-            .attr("height", function(d) { return height - y(d.length); })
-            .style("fill", "#69b3a2")
-    
-    });
-    </script> -->

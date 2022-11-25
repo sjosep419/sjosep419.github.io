@@ -25,8 +25,45 @@ function pieChart() {
     .domain(["a", "b", "c", "d", "e", "f"])
     .range(d3.schemeDark2);
 
-    // A function that create / update the plot for a given variable:
-    function pieupdate(data) {
+    // // A function that create / update the plot for a given variable:
+    // function pieupdate(data) {
+
+    // // Compute the position of each group on the pie:
+    // var pie = d3.pie()
+    //     .value(function(d) {return d.value; })
+    //     .sort(function(a, b) { console.log(a) ; return d3.ascending(a.key, b.key);} ) // This make sure that group order remains the same in the pie chart
+    // var data_ready = pie(d3.entries(data))
+
+    // // map to data
+    // var u = svg.selectAll("path")
+    //     .data(data_ready)
+
+    // // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+    // u.enter()
+    //     .append('path')
+    //     .merge(u)
+    //     .transition()
+    //     .duration(1000)
+    //     .attr('d', d3.arc()
+    //     .innerRadius(0)
+    //     .outerRadius(radius)
+    //     )
+    //     .attr('fill', function(d){ return(color(d.data.key)) })
+    //     .attr("stroke", "white")
+    //     .style("stroke-width", "2px")
+    //     .style("opacity", 1)
+
+    // // remove the group that is not present anymore
+    // u.exit()
+    //     .remove()
+
+    // }
+    // Initialize the plot with the first dataset
+    // pieupdate(data1)
+}
+
+// A function that create / update the plot for a given variable:
+function pieupdate(data) {
 
     // Compute the position of each group on the pie:
     var pie = d3.pie()
@@ -57,11 +94,7 @@ function pieChart() {
     u.exit()
         .remove()
 
-    }
-    // Initialize the plot with the first dataset
-    pieupdate(data1)
 }
-
 
 function lineChart() {
     // // create 2 data_set
@@ -173,20 +206,21 @@ function lineChart() {
 }
 
 function init() {
-    pieChart(data1);
+    pieChart()
+    pieupdate(data1);
     lineChart();
 }
 
 function changeToUIC() {
-    pieChart.pieupdate(data1);
+    pieupdate(data1);
 }
 
 function changeToDePaul() {
-    pieChart.pieupdate(data2);
+    pieupdate(data2);
 }
 
 function changeToLoyola() {
-    pieChart.pieupdate(data3);
+    pieupdate(data3);
 }
 
 window.onload = init;

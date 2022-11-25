@@ -1,4 +1,4 @@
-function pieChart() {
+function pieChart(data) {
     // set the dimensions and margins of the graph
     var width = 450
     height = 450
@@ -59,7 +59,7 @@ function pieChart() {
 
     }
     // Initialize the plot with the first dataset
-    pieupdate(data1)
+    pieupdate(data)
 }
 
 
@@ -173,7 +173,7 @@ function lineChart() {
 }
 
 function init() {
-    pieChart();
+    pieChart(data1);
     lineChart();
 }
 window.onload = init;

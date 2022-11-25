@@ -34,7 +34,7 @@
             d3.csv("https://raw.githubusercontent.com/sjosep419/sjosep419.github.io/main/csv2020%401.csv", function(data) {
             
                 // List of groups (here I have one group per column)
-                var allGroup = ["valueA", "valueB", "valueC"]
+                var allGroup = ["UIC", "DePaul", "Loyola"]
             
                 // add the options to the button
                 d3.select("#selectButton")
@@ -47,7 +47,7 @@
             
                 // Add X axis --> it is a date format
                 var x = d3.scaleLinear()
-                  .domain([0,10])
+                  .domain([1,4])
                   .range([ 0, width ]);
                 svg.append("g")
                   .attr("transform", "translate(0," + height + ")")
@@ -55,7 +55,7 @@
             
                 // Add Y axis
                 var y = d3.scaleLinear()
-                  .domain( [0,20])
+                  .domain( [0,8000])
                   .range([ height, 0 ]);
                 svg.append("g")
                   .call(d3.axisLeft(y));
@@ -67,7 +67,7 @@
                     .datum(data)
                     .attr("d", d3.line()
                       .x(function(d) { return x(+d.time) })
-                      .y(function(d) { return y(+d.valueA) })
+                      .y(function(d) { return y(+d.UIC) })
                     )
                     .attr("stroke", "black")
                     .style("stroke-width", 4)
@@ -80,7 +80,7 @@
                   .enter()
                   .append('circle')
                     .attr("cx", function(d) { return x(+d.time) })
-                    .attr("cy", function(d) { return y(+d.valueA) })
+                    .attr("cy", function(d) { return y(+d.UIC) })
                     .attr("r", 7)
                     .style("fill", "#69b3a2")
             
@@ -121,6 +121,6 @@
             
             </script>
 
-        <p>with raw link</p>
+        <p>updated csv</p>
     </body>
 </html>

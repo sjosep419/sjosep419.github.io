@@ -1,6 +1,6 @@
 function createMap() {
     
-    var map = L.map('map').setView([-41.3058, 174.82082], 8);
+    var map = L.map('map').setView([41.8781, 87.6298], 5);
     mapLink = 
         '<a href="http://openstreetmap.org">OpenStreetMap</a>';
     L.tileLayer(

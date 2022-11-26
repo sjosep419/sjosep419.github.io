@@ -8,7 +8,7 @@ var lineData;
 var x;
 var y;
 
-function pieChart() {
+export function pieChart() {
     // set the dimensions and margins of the graph
     var width = 450
     height = 450
@@ -38,7 +38,7 @@ function pieChart() {
 }
 
 // A function that create / update the plot for a given variable:
-function pieupdate(data) {
+export function pieupdate(data) {
 
     // Compute the position of each group on the pie:
     var pie = d3.pie()
@@ -71,7 +71,7 @@ function pieupdate(data) {
 
 }
 
-function lineChart() {
+export function lineChart() {
 
 
     // set the dimensions and margins of the graph

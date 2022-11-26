@@ -65,9 +65,7 @@ function pieupdate(data) {
         .style("stroke-width", "2px")
         .style("opacity", 1)
 
-    u.selectAll('mySlices')
-        .data(data_ready)
-        .enter()
+    u.enter()
         .append('text')
         .text(function(d){ return "grp " + d.data.key})
         .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })

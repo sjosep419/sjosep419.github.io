@@ -17,8 +17,8 @@ function createMap() {
     }
 }
 
-// function init() {
-//     createMap();
-// }
+function init() {
+    createMap();
+}
 
-// window.onload = init;
+window.onload = init;

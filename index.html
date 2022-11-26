@@ -7,12 +7,9 @@
         <script src="https://d3js.org/d3.v4.js"></script>
         <!-- Color Scale -->
         <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-        <script src="multiLink.js"></script>
+        <script src="multiLink1.js"></script>
         <script src="pieChartData.js"></script>
-        <script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.js"></script>
-        <script src="coord.js"></script>
-        <script src="mapLeaf.js"></script>
-        <script src="init.js"></script>
+        
         <style>
             .float-container{
                 /* border: 3px solid #fff; */
@@ -24,16 +21,15 @@
                 padding: 10px;
                 /* border: 2px solid red; */
             }
-            #map {
-                clear: left;
-                width: 600px;
-                height: 750px;
-            }
 
         </style>
     </head>
     <body>
         <h1>CS 424 Project 3 : Divvy Bike</h1>
+        <ul>
+            <li><a href="index.html">Task 3</a></li>
+            <li><a href="mapGraph.html">Task 4</a></li>
+        </ul>
         <button onclick="changeToUIC()">UIC</button>
         <button onclick="changeToDePaul()">DePaul</button>
         <button onclick="changeToLoyola()">Loyola</button>
@@ -45,7 +41,6 @@
                 <div id="pie_my_dataviz"></div>
             </div>
         </div>
-        <div id="map"></div>
-        <p>Fixed ids</p>
+        <p>Multi page</p>
     </body>
 </html>

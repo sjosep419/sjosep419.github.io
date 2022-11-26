@@ -1,6 +1,11 @@
 var svg;
 var radius;
 var color;
+var lineSvg;
+var line;
+var dot;
+var lineData;
+
 
 function pieChart() {
     // set the dimensions and margins of the graph
@@ -29,41 +34,6 @@ function pieChart() {
     .domain(["a", "b", "c", "d", "e", "f"])
     .range(d3.schemeDark2);
 
-    // // A function that create / update the plot for a given variable:
-    // function pieupdate(data) {
-
-    // // Compute the position of each group on the pie:
-    // var pie = d3.pie()
-    //     .value(function(d) {return d.value; })
-    //     .sort(function(a, b) { console.log(a) ; return d3.ascending(a.key, b.key);} ) // This make sure that group order remains the same in the pie chart
-    // var data_ready = pie(d3.entries(data))
-
-    // // map to data
-    // var u = svg.selectAll("path")
-    //     .data(data_ready)
-
-    // // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-    // u.enter()
-    //     .append('path')
-    //     .merge(u)
-    //     .transition()
-    //     .duration(1000)
-    //     .attr('d', d3.arc()
-    //     .innerRadius(0)
-    //     .outerRadius(radius)
-    //     )
-    //     .attr('fill', function(d){ return(color(d.data.key)) })
-    //     .attr("stroke", "white")
-    //     .style("stroke-width", "2px")
-    //     .style("opacity", 1)
-
-    // // remove the group that is not present anymore
-    // u.exit()
-    //     .remove()
-
-    // }
-    // Initialize the plot with the first dataset
-    // pieupdate(data1)
 }
 
 // A function that create / update the plot for a given variable:
@@ -101,10 +71,7 @@ function pieupdate(data) {
 }
 
 function lineChart() {
-    // // create 2 data_set
-    // var data1 = {a: 9, b: 20, c:30, d:8, e:12}
-    // var data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
-    // var data3 = {a: 2, b: 4, c:2, d:4, e:1, f:6}
+
 
     // set the dimensions and margins of the graph
     var margin = {top: 10, right: 100, bottom: 30, left: 30},
@@ -112,7 +79,7 @@ function lineChart() {
         height = 400 - margin.top - margin.bottom;
     
     // append the svg object to the body of the page
-    var svg = d3.select("#my_dataviz")
+    lineSvg = d3.select("#my_dataviz")
     .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -139,7 +106,7 @@ function lineChart() {
         var x = d3.scaleLinear()
         .domain([1,4])
         .range([ 0, width ]);
-        svg.append("g")
+        lineSvg.append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x));
     
@@ -147,11 +114,11 @@ function lineChart() {
         var y = d3.scaleLinear()
         .domain( [0,8000])
         .range([ height, 0 ]);
-        svg.append("g")
+        lineSvg.append("g")
         .call(d3.axisLeft(y));
     
         // Initialize line with group a
-        var line = svg
+        line = lineSvg
         .append('g')
         .append("path")
             .datum(data)
@@ -164,7 +131,7 @@ function lineChart() {
             .style("fill", "none")
     
         // Initialize dots with group a
-        var dot = svg
+        dot = lineSvg
         .selectAll('circle')
         .data(data)
         .enter()
@@ -175,28 +142,28 @@ function lineChart() {
             .style("fill", "#69b3a2")
     
     
-        // A function that update the chart
-        function update(selectedGroup) {
+        // // A function that update the chart
+        // function update(selectedGroup) {
     
-        // Create new data with the selection?
-        var dataFilter = data.map(function(d){return {time: d.time, value:d[selectedGroup]} })
+        // // Create new data with the selection?
+        // var dataFilter = data.map(function(d){return {time: d.time, value:d[selectedGroup]} })
     
-        // Give these new data to update line
-        line
-            .datum(dataFilter)
-            .transition()
-            .duration(1000)
-            .attr("d", d3.line()
-                .x(function(d) { return x(+d.time) })
-                .y(function(d) { return y(+d.value) })
-            )
-        dot
-            .data(dataFilter)
-            .transition()
-            .duration(1000)
-            .attr("cx", function(d) { return x(+d.time) })
-            .attr("cy", function(d) { return y(+d.value) })
-        }
+        // // Give these new data to update line
+        // line
+        //     .datum(dataFilter)
+        //     .transition()
+        //     .duration(1000)
+        //     .attr("d", d3.line()
+        //         .x(function(d) { return x(+d.time) })
+        //         .y(function(d) { return y(+d.value) })
+        //     )
+        // dot
+        //     .data(dataFilter)
+        //     .transition()
+        //     .duration(1000)
+        //     .attr("cx", function(d) { return x(+d.time) })
+        //     .attr("cy", function(d) { return y(+d.value) })
+        // }
     
         // When the button is changed, run the updateChart function
         d3.select("#selectButton").on("change", function(d) {
@@ -205,8 +172,32 @@ function lineChart() {
             // run the updateChart function with this selected option
             update(selectedOption)
         })
-    
+        lineData = data;
     })
+}
+
+
+// A function that update the chart
+function lineupdate(selectedGroup, lineData) {
+
+    // Create new data with the selection?
+    var dataFilter = lineData.map(function(d){return {time: d.time, value:d[selectedGroup]} })
+
+    // Give these new data to update line
+    line
+        .datum(dataFilter)
+        .transition()
+        .duration(1000)
+        .attr("d", d3.line()
+            .x(function(d) { return x(+d.time) })
+            .y(function(d) { return y(+d.value) })
+        )
+    dot
+        .data(dataFilter)
+        .transition()
+        .duration(1000)
+        .attr("cx", function(d) { return x(+d.time) })
+        .attr("cy", function(d) { return y(+d.value) })
 }
 
 function init() {
@@ -217,14 +208,17 @@ function init() {
 
 function changeToUIC() {
     pieupdate(data1);
+    lineupdate("UIC", lineData);
 }
 
 function changeToDePaul() {
     pieupdate(data2);
+    lineupdate("DePaul", lineData);
 }
 
 function changeToLoyola() {
     pieupdate(data3);
+    lineupdate("Loyola", lineData);
 }
 
 window.onload = init;

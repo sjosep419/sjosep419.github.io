@@ -201,11 +201,11 @@ function lineupdate(selectedGroup, lineData) {
         .attr("cy", function(d) { return y(+d.value) })
 }
 
-function init() {
-    pieChart();
-    pieupdate(data1);
-    lineChart();
-}
+// function init() {
+//     pieChart();
+//     pieupdate(data1);
+//     lineChart();
+// }
 
 function changeToUIC() {
     pieupdate(data1);
@@ -222,4 +222,4 @@ function changeToLoyola() {
     lineupdate("Loyola", lineData);
 }
 
-window.onload = init;
+// window.onload = init;

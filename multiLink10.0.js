@@ -5,7 +5,8 @@ var lineSvg;
 var line;
 var dot;
 var lineData;
-
+var x;
+var y;
 
 function pieChart() {
     // set the dimensions and margins of the graph
@@ -103,7 +104,7 @@ function lineChart() {
         .attr("value", function (d) { return d; }) // corresponding value returned by the button
     
         // Add X axis --> it is a date format
-        var x = d3.scaleLinear()
+        x = d3.scaleLinear()
         .domain([1,4])
         .range([ 0, width ]);
         lineSvg.append("g")
@@ -111,7 +112,7 @@ function lineChart() {
         .call(d3.axisBottom(x));
     
         // Add Y axis
-        var y = d3.scaleLinear()
+        y = d3.scaleLinear()
         .domain( [0,8000])
         .range([ height, 0 ]);
         lineSvg.append("g")

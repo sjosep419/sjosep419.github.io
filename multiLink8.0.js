@@ -1,4 +1,6 @@
 var svg;
+var radius;
+var color;
 
 function pieChart() {
     // set the dimensions and margins of the graph
@@ -7,10 +9,10 @@ function pieChart() {
     margin = 40
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-    var radius = Math.min(width, height) / 2 - margin
+    radius = Math.min(width, height) / 2 - margin
 
     // append the svg object to the div called 'pie_my_dataviz'
-    var svg = d3.select("#pie_my_dataviz")
+    svg = d3.select("#pie_my_dataviz")
     .append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -23,7 +25,7 @@ function pieChart() {
     // var data3 = {a: 2, b: 4, c:2, d:4, e:1, f:6}
 
     // set the color scale
-    var color = d3.scaleOrdinal()
+    color = d3.scaleOrdinal()
     .domain(["a", "b", "c", "d", "e", "f"])
     .range(d3.schemeDark2);
 
@@ -62,11 +64,10 @@ function pieChart() {
     // }
     // Initialize the plot with the first dataset
     // pieupdate(data1)
-    return svg;
 }
 
 // A function that create / update the plot for a given variable:
-function pieupdate(data, svg) {
+function pieupdate(data) {
 
     // Compute the position of each group on the pie:
     var pie = d3.pie()
@@ -209,21 +210,21 @@ function lineChart() {
 }
 
 function init() {
-    svg = pieChart();
-    pieupdate(data1, svg);
+    pieChart();
+    pieupdate(data1);
     lineChart();
 }
 
 function changeToUIC() {
-    pieupdate(data1, svg);
+    pieupdate(data1);
 }
 
 function changeToDePaul() {
-    pieupdate(data2, svg);
+    pieupdate(data2);
 }
 
 function changeToLoyola() {
-    pieupdate(data3, svg);
+    pieupdate(data3);
 }
 
 window.onload = init;

@@ -10,9 +10,9 @@ var y;
 
 function pieChart() {
     // set the dimensions and margins of the graph
-    var width = 100
-    height = 100
-    margin = 10
+    var width = 450
+    height = 450
+    margin = 40
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     radius = Math.min(width, height) / 2 - margin
@@ -75,9 +75,9 @@ function lineChart() {
 
 
     // set the dimensions and margins of the graph
-    var margin = {top: 5, right: 50, bottom: 15, left: 15},
-        width = 230 - margin.left - margin.right,
-        height = 200 - margin.top - margin.bottom;
+    var margin = {top: 10, right: 100, bottom: 30, left: 30},
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
     
     // append the svg object to the body of the page
     lineSvg = d3.select("#my_dataviz")

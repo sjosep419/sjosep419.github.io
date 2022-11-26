@@ -1,3 +1,5 @@
+var svg;
+
 function pieChart() {
     // set the dimensions and margins of the graph
     var width = 450
@@ -60,10 +62,11 @@ function pieChart() {
     // }
     // Initialize the plot with the first dataset
     // pieupdate(data1)
+    return svg;
 }
 
 // A function that create / update the plot for a given variable:
-function pieupdate(data) {
+function pieupdate(data, svg) {
 
     // Compute the position of each group on the pie:
     var pie = d3.pie()
@@ -206,21 +209,21 @@ function lineChart() {
 }
 
 function init() {
-    pieChart()
-    pieupdate(data1);
+    svg = pieChart();
+    pieupdate(data1, svg);
     lineChart();
 }
 
 function changeToUIC() {
-    pieupdate(data1);
+    pieupdate(data1, svg);
 }
 
 function changeToDePaul() {
-    pieupdate(data2);
+    pieupdate(data2, svg);
 }
 
 function changeToLoyola() {
-    pieupdate(data3);
+    pieupdate(data3, svg);
 }
 
 window.onload = init;

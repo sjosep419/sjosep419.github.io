@@ -1,4 +1,4 @@
-export function createMap() {
+function createMap() {
     
     var map = L.map('map').setView([41.8781, -87.6298], 14);
     mapLink = 

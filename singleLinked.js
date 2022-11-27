@@ -117,11 +117,15 @@ function LineChart(data, {
       .attr("stroke-width", strokeWidth)
       .attr("stroke-opacity", strokeOpacity)
     .selectAll("path")
-    .datum(d3.group(I, i => Z[i]))
+    .data(d3.group(I, i => Z[i]))
     .join("path")
       .style("mix-blend-mode", mixBlendMode)
       .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)
-      .attr("d", ([, I]) => line(I));
+      .attr("d", d3.line()
+      .defined(i => D[i])
+      .curve(curve)
+      .x(i => xScale(X[i]))
+      .y(i => yScale(Y[i])));
   
     var dot = svg.append("g")
         .attr("display", "none");

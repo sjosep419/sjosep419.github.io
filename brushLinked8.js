@@ -233,7 +233,15 @@ function brushableScatterplot() {
   function init() {
     const scatter = brushableScatterplot();
     const bar = barChart();
-    bar.update(DivvyData);
+
+    // update the bar chart when the scatterplot
+    // selection changes
+    d3.select(scatter).on('input', () => {
+      bar.update(scatter.value);
+    });
+
+    // intial state of bar chart
+    bar.update(scatter.value);
   }
 
   window.onload = init;

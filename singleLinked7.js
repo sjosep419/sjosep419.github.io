@@ -48,7 +48,7 @@ function LineChart(data, {
     // Construct scales and axes.
     var xScale = xType(xDomain, xRange);
     var yScale = yType(yDomain, yRange);
-    var xAxis = d3.axisBottom(xScale).ticks(width / 80).tickSizeOuter(0);
+    var xAxis = d3.axisBottom(xScale).ticks(width / 80);
     var yAxis = d3.axisLeft(yScale).ticks(height / 60, yFormat);
   
     // Compute titles.
@@ -85,7 +85,7 @@ function LineChart(data, {
   
     svg.append("g")
         .attr("transform", `translate(0,${height - marginBottom})`)
-        .call(xAxis);
+        .call(xAxis)
   
     svg.append("g")
         .attr("transform", `translate(${marginLeft},0)`)

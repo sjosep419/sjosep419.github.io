@@ -109,7 +109,7 @@ function LineChart(data, {
        .text("Month");
     
     
-    var path = svg.append('g')
+    var path = d3.select("#chart")
         .append("path")
         .attr("fill", "none")
         .attr("stroke", typeof color === "string" ? color : null)

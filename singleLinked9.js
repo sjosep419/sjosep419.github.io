@@ -55,12 +55,11 @@ function LineChart(data, {
     var T = title === undefined ? Z : title === null ? null : d3.map(data, title);
   
     // Construct a line generator.
-    function line(i) { d3.line()
+    var line = d3.line()
         .defined(i => D[i])
         .curve(curve)
         .x(i => xScale(X[i]))
         .y(i => yScale(Y[i]));
-    }
   
     // Create a svg with dimension constrains.
     var svg = d3.select("#chart")
@@ -118,18 +117,18 @@ function LineChart(data, {
     ];
 
     var path = svg.append("g")
-      .attr("fill", "none")
-      .attr("stroke", typeof color === "string" ? color : null)
-      .attr("stroke-linecap", strokeLinecap)
-      .attr("stroke-linejoin", strokeLinejoin)
-      .attr("stroke-width", strokeWidth)
-      .attr("stroke-opacity", strokeOpacity)
+        .attr("fill", "none")
+        .attr("stroke", typeof color === "string" ? color : null)
+        .attr("stroke-linecap", strokeLinecap)
+        .attr("stroke-linejoin", strokeLinejoin)
+        .attr("stroke-width", strokeWidth)
+        .attr("stroke-opacity", strokeOpacity)
       .selectAll("path")
       .data(d3.group(I, i => Z[i]))
-      .join("path")
-      .style("mix-blend-mode", mixBlendMode)
-      .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)
-      .attr("d", ([, I]) => line(I));
+      .enter().append('path')
+        .style("mix-blend-mode", mixBlendMode)
+        .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)
+        .attr("d", ([, I]) => line(I));
   
     var dot = svg.append("g")
         .attr("display", "none");

@@ -159,7 +159,15 @@ function LineChart(data, {
   }
 
   function init() {
-    LineChart(data2018);
+    LineChart(data2018, {
+        x: d => d.date,
+        y: d => d.ridership,
+        z: d => d.station,
+        yLabel: "↑ Ridership",
+        width,
+        height:500,
+        color: "steelblue"
+      })
   }
 
   window.onload = init;

@@ -109,20 +109,19 @@ function LineChart(data, {
        .text("Month");
     
     
-    var path = d3.select("#chart")
-        .append("path")
-        .attr("fill", "none")
-        .attr("stroke", typeof color === "string" ? color : null)
-        // .attr("stroke-linecap", strokeLinecap)
-        // .attr("stroke-linejoin", strokeLinejoin)
-        // .attr("stroke-width", strokeWidth)
-        // .attr("stroke-opacity", strokeOpacity)
-      .selectAll("path")
-      .data(d3.group(I, i => Z[i]))
-      .join("path")
-        .style("mix-blend-mode", mixBlendMode)
-        .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)
-        .attr("d", ([, I]) => line(I));
+    var path = svg.append("g")
+      .attr("fill", "none")
+      .attr("stroke", typeof color === "string" ? color : null)
+      .attr("stroke-linecap", strokeLinecap)
+      .attr("stroke-linejoin", strokeLinejoin)
+      .attr("stroke-width", strokeWidth)
+      .attr("stroke-opacity", strokeOpacity)
+    .selectAll("path")
+    .data(d3.group(I, i => Z[i]))
+    .join("path")
+      .style("mix-blend-mode", mixBlendMode)
+      .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)
+      .attr("d", ([, I]) => line(I));
   
     var dot = svg.append("g")
         .attr("display", "none");
@@ -167,7 +166,7 @@ function LineChart(data, {
         y: d => d.ridership,
         z: d => d.station,
         yLabel: "↑ Ridership",
-        width:635,
+        width,
         height:500,
         color: "steelblue"
       })

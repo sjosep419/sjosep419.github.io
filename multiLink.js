@@ -28,7 +28,7 @@ function pieChart() {
 
     // set the color scale
     color = d3.scaleOrdinal()
-    .domain(["a", "b", "c", "d", "e", "f"])
+    .domain(["members", "causal"])
     .range(d3.schemeDark2);
 
 }
@@ -67,7 +67,7 @@ function pieupdate(data) {
 
     u.enter()
         .append('text')
-        .text(function(d){ return "grp " + d.data.key})
+        .text(function(d){ return d.data.key})
         .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
         .style("text-anchor", "middle")
         .style("font-size", 17)

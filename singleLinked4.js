@@ -122,9 +122,8 @@ function LineChart(data, {
     .attr("stroke-linecap", strokeLinecap)
     .attr("stroke-linejoin", strokeLinejoin)
     .attr("stroke-width", strokeWidth)
-    .attr("stroke-opacity", strokeOpacity);
-
-  path.selectAll("path")
+    .attr("stroke-opacity", strokeOpacity)
+  .selectAll("path")
   .data(d3.group(I, i => Z[i]))
   .join("path")
     .style("mix-blend-mode", mixBlendMode)

@@ -1,6 +1,62 @@
 function brushableScatterplot() {
     // set up
-  
+    const margin = ({top:10, right:20, bottom:50, left:105});
+
+    const visWidth = 420;
+    const visHeight = 420;
+
+    const BikeTypes = Array.from(new Set(DivvyData.map(d => d.bike)));
+    const bikeColor = d3.scaleOrdinal().domain(BikeTypes).range(d3.schemeCategory10);
+
+    var x = d3.scaleLinear()
+    .domain(d3.extent(DivvyData, d => d.time)).nice()
+    .range([0, visWidth])
+
+    var y = d3.scaleLinear()
+    .domain(d3.extent(DivvyData, d => d.distance)).nice()
+    .range([visHeight, 0])
+
+    var xAxis = (g, scale, label) =>
+  g.attr('transform', `translate(0, ${visHeight})`)
+      // add axis
+      .call(d3.axisBottom(scale))
+      // remove baseline
+      .call(g => g.select('.domain').remove())
+      // add grid lines
+      // references https://observablehq.com/@d3/connected-scatterplot
+      .call(g => g.selectAll('.tick line')
+        .clone()
+          .attr('stroke', '#d3d3d3')
+          .attr('y1', -visHeight)
+          .attr('y2', 0))
+    // add label
+    .append('text')
+      .attr('x', visWidth / 2)
+      .attr('y', 40)
+      .attr('fill', 'black')
+      .attr('text-anchor', 'middle')
+      .text(label)
+
+    var yAxis = (g, scale, label) => 
+    // add axis
+    g.call(d3.axisLeft(scale))
+        // remove baseline
+        .call(g => g.select('.domain').remove())
+        // add grid lines
+        // refernces https://observablehq.com/@d3/connected-scatterplot
+        .call(g => g.selectAll('.tick line')
+          .clone()
+            .attr('stroke', '#d3d3d3')
+            .attr('x1', 0)
+            .attr('x2', visWidth))
+      // add label
+      .append('text')
+        .attr('x', -40)
+        .attr('y', visHeight / 2)
+        .attr('fill', 'black')
+        .attr('dominant-baseline', 'middle')
+        .text(label)
+    
     // the value for when there is no brush
     const initialValue = DivvyData;
   

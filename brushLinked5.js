@@ -142,6 +142,9 @@ function brushableScatterplot() {
     
     const visWidth = 400;
     const visHeight = 200;
+
+    const BikeTypes = Array.from(new Set(DivvyData.map(d => d.bike)));
+    const bikeColor = d3.scaleOrdinal().domain(BikeTypes).range(d3.schemeCategory10);
   
     const svg = d3.select("#chart")
         .append("svg")

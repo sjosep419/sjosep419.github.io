@@ -164,7 +164,7 @@ function LineChart(data, {
         y: d => d.ridership,
         z: d => d.station,
         yLabel: "↑ Ridership",
-        width:640,
+        width:635,
         height:500,
         color: "steelblue"
       })

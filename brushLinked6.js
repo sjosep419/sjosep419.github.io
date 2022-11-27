@@ -233,6 +233,7 @@ function brushableScatterplot() {
   function init() {
     // const scatter = brushableScatterplot();
     const bar = barChart();
+    bar.update(DivvyData);
   }
 
   window.onload = init;

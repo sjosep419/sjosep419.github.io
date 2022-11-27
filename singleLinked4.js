@@ -29,12 +29,12 @@ function LineChart(data, {
     voronoi // show a Voronoi overlay? (for debugging)
   } = {}) {
     // Compute values.
-    const X = d3.map(data, x);
-    const Y = d3.map(data, y);
-    const Z = d3.map(data, z);
-    const O = d3.map(data, d => d);
+    var X = d3.map(data, x);
+    var Y = d3.map(data, y);
+    var Z = d3.map(data, z);
+    var O = d3.map(data, d => d);
     if (defined === undefined) defined = (d, i) => !isNaN(X[i]) && !isNaN(Y[i]);
-    const D = d3.map(data, defined);
+    var D = d3.map(data, defined);
   
     // Compute default domains, and unique the z-domain.
     if (xDomain === undefined) xDomain = d3.extent(X);
@@ -43,26 +43,26 @@ function LineChart(data, {
     zDomain = new d3.InternSet(zDomain);
   
     // Omit any data not present in the z-domain.
-    const I = d3.range(X.length).filter(i => zDomain.has(Z[i]));
+    var I = d3.range(X.length).filter(i => zDomain.has(Z[i]));
   
     // Construct scales and axes.
-    const xScale = xType(xDomain, xRange);
-    const yScale = yType(yDomain, yRange);
-    const xAxis = d3.axisBottom(xScale).ticks(width / 80).tickSizeOuter(0);
-    const yAxis = d3.axisLeft(yScale).ticks(height / 60, yFormat);
+    var xScale = xType(xDomain, xRange);
+    var yScale = yType(yDomain, yRange);
+    var xAxis = d3.axisBottom(xScale).ticks(width / 80).tickSizeOuter(0);
+    var yAxis = d3.axisLeft(yScale).ticks(height / 60, yFormat);
   
     // Compute titles.
-    const T = title === undefined ? Z : title === null ? null : d3.map(data, title);
+    var T = title === undefined ? Z : title === null ? null : d3.map(data, title);
   
     // Construct a line generator.
-    const line = d3.line()
+    var line = d3.line()
         .defined(i => D[i])
         .curve(curve)
         .x(i => xScale(X[i]))
         .y(i => yScale(Y[i]));
   
     // Create a svg with dimension constrains.
-    const svg = d3.select("#chart")
+    var svg = d3.select("#chart")
         .append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -108,7 +108,7 @@ function LineChart(data, {
        .style("font-size", "14px")
        .text("Month");
     
-    const path = svg.append("g")
+    var path = svg.append("g")
         .attr("fill", "none")
         .attr("stroke", typeof color === "string" ? color : null)
         // .attr("stroke-linecap", strokeLinecap)
@@ -116,13 +116,13 @@ function LineChart(data, {
         // .attr("stroke-width", strokeWidth)
         // .attr("stroke-opacity", strokeOpacity)
       .selectAll("path")
-      .data(d3.group(data, i => i.station))
+      .data(d3.group(I, i => Z[i]))
       .join("path")
         .style("mix-blend-mode", mixBlendMode)
         .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)
         .attr("d", ([, I]) => line(I));
   
-    const dot = svg.append("g")
+    var dot = svg.append("g")
         .attr("display", "none");
   
     dot.append("circle")
@@ -136,8 +136,8 @@ function LineChart(data, {
   
     // Function to keep track of the the mouse pointer on the graph
     function pointermoved(event) {
-      const [xm, ym] = d3.pointer(event);
-      const i = d3.least(I, i => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym)); // closest point
+      var [xm, ym] = d3.pointer(event);
+      var i = d3.least(I, i => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym)); // closest point
       path.style("stroke", ([z]) => Z[i] === z ? null : "#ddd").filter(([z]) => Z[i] === z).raise();
       dot.attr("transform", `translate(${xScale(X[i])},${yScale(Y[i])})`);
       if (T) dot.select("text").text(T[i]);

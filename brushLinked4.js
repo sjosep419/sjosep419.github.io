@@ -143,7 +143,7 @@ function brushableScatterplot() {
     const visWidth = 400;
     const visHeight = 200;
   
-    const svg = d3.d3.select("#chart")
+    const svg = d3.select("#chart")
         .append("svg")
         .attr('width', visWidth + margin.left + margin.right)
         .attr('height', visHeight + margin.top + margin.bottom);

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CS 424 Project 3</title>
+        <meta charset="utf-8" />
+        <!-- <link rel="stylesheet" href="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.css" /> -->
+        <script src="https://d3js.org/d3.v4.js"></script>
+        <!-- Color Scale -->
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <script src="multiLink1.js"></script>
+        <script src="pieChartData.js"></script>
+        
+        <style>
+            .float-container{
+                /* border: 3px solid #fff; */
+                padding: 20px;
+            }
+            .float-child{
+                width: 40%;
+                float: left;
+                padding: 10px;
+                /* border: 2px solid red; */
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>CS 424 Project 3 : Divvy Bike</h1>
+        <ul>
+            <li><a href="index.html">Task 3</a></li>
+            <li><a href="mapGraph.html">Task 4</a></li>
+        </ul>
+        <button onclick="changeToUIC()">UIC</button>
+        <button onclick="changeToDePaul()">DePaul</button>
+        <button onclick="changeToLoyola()">Loyola</button>
+        <div class="float-container">
+            <div class="float-child">
+                <div id="my_dataviz"></div>
+            </div>
+            <div class="float-child">
+                <div id="pie_my_dataviz"></div>
+            </div>
+        </div>
+        <p>Multi page 3</p>
+    </body>
+</html>

@@ -116,7 +116,7 @@ function LineChart(data, {
         // .attr("stroke-width", strokeWidth)
         // .attr("stroke-opacity", strokeOpacity)
       .selectAll("path")
-      .data(d3.group(I, i => Z[i]))
+      .data(d3.group(I, i => data[i].station))
       .join("path")
         .style("mix-blend-mode", mixBlendMode)
         .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)

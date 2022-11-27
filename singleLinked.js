@@ -108,7 +108,14 @@ function LineChart(data, {
        .style("font-size", "14px")
        .text("Month");
     
-    
+    var dataset1 = [
+        [1,1], [12,20], [24,36],
+        [32, 50], [40, 70], [50, 100],
+        [55, 106], [65, 123], [73, 130],
+        [78, 134], [83, 136], [89, 138],
+        [100, 140]
+    ];
+
     var path = svg.append("g")
       .attr("fill", "none")
       .attr("stroke", typeof color === "string" ? color : null)
@@ -117,15 +124,15 @@ function LineChart(data, {
       .attr("stroke-width", strokeWidth)
       .attr("stroke-opacity", strokeOpacity)
     .selectAll("path")
-    .data([0, 5, 10, 15, 20])
-    .join("path");
+    .datum(dataset1)
+    .join("path")
       // .style("mix-blend-mode", mixBlendMode)
       // .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)
-      // .attr("d", d3.line()
-      // .defined(i => D[i])
-      // .curve(curve)
-      // .x(i => xScale(X[i]))
-      // .y(i => yScale(Y[i])));
+      .attr("d", d3.line()
+      .defined(i => D[i])
+      .curve(curve)
+      .x(i => xScale(X[i]))
+      .y(i => yScale(Y[i])));
   
     var dot = svg.append("g")
         .attr("display", "none");

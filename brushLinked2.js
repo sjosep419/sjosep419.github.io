@@ -132,11 +132,11 @@ function brushableScatterplot() {
       }
     }
   
-    // return svg.node();
+    return svg.node();
   }
 
   function init() {
-    brushableScatterplot();
+    const scatter = brushableScatterplot();
   }
 
   window.onload = init;

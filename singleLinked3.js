@@ -117,22 +117,19 @@ function LineChart(data, {
     ];
 
     var path = svg.append("g")
-      .attr("fill", "none")
-      .attr("stroke", typeof color === "string" ? color : null)
-      .attr("stroke-linecap", strokeLinecap)
-      .attr("stroke-linejoin", strokeLinejoin)
-      .attr("stroke-width", strokeWidth)
-      .attr("stroke-opacity", strokeOpacity)
-    .selectAll("path")
-    .datum(dataset1)
-    .join("path")
-      // .style("mix-blend-mode", mixBlendMode)
-      // .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)
-      .attr("d", d3.line()
-      .defined(i => D[i])
-      .curve(curve)
-      .x(i => xScale(X[i]))
-      .y(i => yScale(Y[i])));
+    .attr("fill", "none")
+    .attr("stroke", typeof color === "string" ? color : null)
+    .attr("stroke-linecap", strokeLinecap)
+    .attr("stroke-linejoin", strokeLinejoin)
+    .attr("stroke-width", strokeWidth)
+    .attr("stroke-opacity", strokeOpacity);
+
+  path.selectAll("path")
+  .data(d3.group(I, i => Z[i]))
+  .join("path")
+    .style("mix-blend-mode", mixBlendMode)
+    .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)
+    .attr("d", ([, I]) => line(I));
   
     var dot = svg.append("g")
         .attr("display", "none");

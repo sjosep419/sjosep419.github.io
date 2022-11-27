@@ -60,7 +60,7 @@ function brushableScatterplot() {
     // the value for when there is no brush
     const initialValue = DivvyData;
   
-    const svg = d3.select("#chart")
+    const svg = d3.select("#scatter")
         .append("svg")
         .attr('width', visWidth + margin.left + margin.right)
         .attr('height', visHeight + margin.top + margin.bottom)
@@ -146,7 +146,7 @@ function brushableScatterplot() {
     const BikeTypes = Array.from(new Set(DivvyData.map(d => d.bike)));
     const bikeColor = d3.scaleOrdinal().domain(BikeTypes).range(d3.schemeCategory10);
   
-    const svg = d3.select("#chart")
+    const svg = d3.select("#bar")
         .append("svg")
         .attr('width', visWidth + margin.left + margin.right)
         .attr('height', visHeight + margin.top + margin.bottom);
@@ -231,7 +231,7 @@ function brushableScatterplot() {
   }
 
   function init() {
-    // const scatter = brushableScatterplot();
+    const scatter = brushableScatterplot();
     const bar = barChart();
     bar.update(DivvyData);
   }

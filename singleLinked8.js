@@ -55,11 +55,12 @@ function LineChart(data, {
     var T = title === undefined ? Z : title === null ? null : d3.map(data, title);
   
     // Construct a line generator.
-    var line = d3.line()
+    function line(i) { d3.line()
         .defined(i => D[i])
         .curve(curve)
         .x(i => xScale(X[i]))
         .y(i => yScale(Y[i]));
+    }
   
     // Create a svg with dimension constrains.
     var svg = d3.select("#chart")
@@ -75,13 +76,13 @@ function LineChart(data, {
         .on("touchstart", event => event.preventDefault());
   
     // An optional Voronoi display.
-    if (voronoi) svg.append("path")
-        .attr("fill", "none")
-        .attr("stroke", "#ccc")
-        .attr("d", d3.Delaunay
-          .from(I, i => xScale(X[i]), i => yScale(Y[i]))
-          .voronoi([0, 0, width, height])
-          .render());
+    // if (voronoi) svg.append("path")
+    //     .attr("fill", "none")
+    //     .attr("stroke", "#ccc")
+    //     .attr("d", d3.Delaunay
+    //       .from(I, i => xScale(X[i]), i => yScale(Y[i]))
+    //       .voronoi([0, 0, width, height])
+    //       .render());
   
     svg.append("g")
         .attr("transform", `translate(0,${height - marginBottom})`)
@@ -91,9 +92,9 @@ function LineChart(data, {
         .attr("transform", `translate(${marginLeft},0)`)
         .call(yAxis)
         .call(g => g.select(".domain").remove())
-        .call(voronoi ? () => {} : g => g.selectAll(".tick line").clone()
-            .attr("x2", width - marginLeft - marginRight)
-            .attr("stroke-opacity", 0.1))
+        // .call(voronoi ? () => {} : g => g.selectAll(".tick line").clone()
+        //     .attr("x2", width - marginLeft - marginRight)
+        //     .attr("stroke-opacity", 0.1))
         .call(g => g.append("text")
             .attr("x", -marginLeft)
             .attr("y", 30)

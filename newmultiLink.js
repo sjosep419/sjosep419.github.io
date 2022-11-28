@@ -29,7 +29,7 @@ function pieChart() {
     // set the color scale
     color = d3.scaleOrdinal()
     .domain(["members", "causal"])
-    .range(d3.schemeCatagory10);
+    .range(d3.schemeDark2);
 
 }
 

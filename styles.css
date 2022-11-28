@@ -108,6 +108,13 @@
     margin: 0;
     padding: 0;
   }
+
+  .menuContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    Justify-content: center;
+  }
   
   
   ol ol,

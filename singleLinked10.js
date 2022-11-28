@@ -108,13 +108,6 @@ function LineChart(data, {
        .style("font-size", "14px")
        .text("Month");
     
-    var dataset1 = [
-        [1,1], [12,20], [24,36],
-        [32, 50], [40, 70], [50, 100],
-        [55, 106], [65, 123], [73, 130],
-        [78, 134], [83, 136], [89, 138],
-        [100, 140]
-    ];
 
     var path = svg.append("g")
         .attr("fill", "none")
@@ -164,11 +157,11 @@ function LineChart(data, {
       svg.dispatch("input", {bubbles: true});
     }
     
-    // return Object.assign(svg.node(), {value: null});
+    return Object.assign(svg.node(), {value: null});
   }
 
   function init() {
-    LineChart(data2018, {
+    const lines = LineChart(data2018, {
         x: d => d.date,
         y: d => d.ridership,
         z: d => d.station,

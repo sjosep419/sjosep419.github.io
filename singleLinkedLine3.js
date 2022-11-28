@@ -1,6 +1,7 @@
 var data2018 = [{"station":"900 W Harrison St","ridership":1789,"date":"2018-01-01T00:00:00.000Z"},{"station":"Sheffield Ave & Fullerton Ave","ridership":3856,"date":"2018-01-01T00:00:00.000Z"},{"station":"Sheridan Rd & Greenleaf Ave","ridership":347,"date":"2018-01-01T00:00:00.000Z"},{"station":"900 W Harrison St","ridership":3241,"date":"2018-04-01T00:00:00.000Z"},{"station":"Sheffield Ave & Fullerton Ave","ridership":9340,"date":"2018-04-01T00:00:00.000Z"},{"station":"Sheridan Rd & Greenleaf Ave","ridership":951,"date":"2018-04-01T00:00:00.000Z"}];
 
-function LineChart(data, {
+function _LineChart(d3){return(
+  function LineChart(data, {
     x = ([x]) => x, // given d in data, returns the (temporal) x-value
     y = ([, y]) => y, // given d in data, returns the (quantitative) y-value
     z = () => 1, // given d in data, returns the (categorical) z-value
@@ -160,9 +161,9 @@ function LineChart(data, {
     
     return Object.assign(svg.node(), {value: null});
   }
-
+  )}
   function init() {
-    LineChart(data2018, {
+    _LineChart(d3,LineChart(data2018, {
         x: d => d.date,
         y: d => d.ridership,
         z: d => d.station,
@@ -170,7 +171,8 @@ function LineChart(data, {
         width: 640,
         height:500,
         color: "steelblue"
-      })
+      }));
   }
+
 
   window.onload = init;

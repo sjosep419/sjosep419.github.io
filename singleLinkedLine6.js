@@ -176,31 +176,30 @@
       var height = 500;
       var color = "steelblue";
 
-      title, // given d in data, returns the title text
-      defined, // for gaps in data
-      curve = d3.curveLinear, // method of interpolation between points
-      marginTop = 20, // top margin, in pixels
-      marginRight = 30, // right margin, in pixels
-      marginBottom = 30, // bottom margin, in pixels
-      marginLeft = 40, // left margin, in pixels
-      width = 640, // outer width, in pixels
-      height = 400, // outer height, in pixels
-      xType = d3.scaleUtc, // type of x-scale
-      xDomain, // [xmin, xmax]
-      xRange = [marginLeft, width - marginRight], // [left, right]
-      yType = d3.scaleLinear, // type of y-scale
-      yDomain, // [ymin, ymax]
-      yRange = [height - marginBottom, marginTop], // [bottom, top]
-      yFormat, // a format specifier string for the y-axis
-      yLabel, // a label for the y-axis
-      zDomain, // array of z-values
-      color = "currentColor", // stroke color of line, as a constant or a function of *z*
-      strokeLinecap, // stroke line cap of line
-      strokeLinejoin, // stroke line join of line
-      strokeWidth = 1.5, // stroke width of line
-      strokeOpacity, // stroke opacity of line
-      mixBlendMode = "multiply", // blend mode of lines
-      voronoi // show a Voronoi overlay? (for debugging)
+      var defined; // for gaps in data
+      var curve = d3.curveLinear; // method of interpolation between points
+      var marginTop = 20; // top margin, in pixels
+      var marginRight = 30; // right margin, in pixels
+      var marginBottom = 30; // bottom margin, in pixels
+      var marginLeft = 40; // left margin, in pixels
+      var width = 640; // outer width, in pixels
+      var height = 400; // outer height, in pixels
+      var xType = d3.scaleUtc; // type of x-scale
+      var xDomain; // [xmin, xmax]
+      var xRange = [marginLeft, width - marginRight]; // [left, right]
+      var yType = d3.scaleLinear; // type of y-scale
+      var yDomain; // [ymin, ymax]
+      var yRange = [height - marginBottom, marginTop]; // [bottom, top]
+      var yFormat; // a format specifier string for the y-axis
+      var yLabel; // a label for the y-axis
+      var zDomain; // array of z-values
+      var color = "currentColor"; // stroke color of line, as a constant or a function of *z*
+      var strokeLinecap; // stroke line cap of line
+      var strokeLinejoin; // stroke line join of line
+      var strokeWidth = 1.5; // stroke width of line
+      var strokeOpacity; // stroke opacity of line
+      var mixBlendMode = "multiply"; // blend mode of lines
+      var voronoi // show a Voronoi overlay? (for debugging)
 
       const X = d3.map(data, x);
       const Y = d3.map(data, y);

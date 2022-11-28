@@ -15,6 +15,21 @@ var yScale;
 var xAxis;
 var yAxis;
 
+var X;
+var Y;
+var Z;
+var O;
+var D;
+var I;
+var T;
+
+var line;
+var svg;
+var path;
+var dot;
+
+
+
 function LineChart(data, {
     x = ([x]) => x, // given d in data, returns the (temporal) x-value
     y = ([, y]) => y, // given d in data, returns the (quantitative) y-value
@@ -46,12 +61,12 @@ function LineChart(data, {
     voronoi // show a Voronoi overlay? (for debugging)
   } = {}) {
     // Compute values.
-    var X = d3.map(data, x);
-    var Y = d3.map(data, y);
-    var Z = d3.map(data, z);
-    var O = d3.map(data, d => d);
+    X = d3.map(data, x);
+    Y = d3.map(data, y);
+    Z = d3.map(data, z);
+    O = d3.map(data, d => d);
     if (defined === undefined) defined = (d, i) => !isNaN(X[i]) && !isNaN(Y[i]);
-    var D = d3.map(data, defined);
+    D = d3.map(data, defined);
   
     // Compute default domains, and unique the z-domain.
     if (xDomain === undefined) xDomain = d3.extent(X);
@@ -60,7 +75,7 @@ function LineChart(data, {
     zDomain = new d3.InternSet(zDomain);
   
     // Omit any data not present in the z-domain.
-    var I = d3.range(X.length).filter(i => zDomain.has(Z[i]));
+    I = d3.range(X.length).filter(i => zDomain.has(Z[i]));
   
     // Construct scales and axes.
     xScale = xType(xDomain, xRange);
@@ -69,17 +84,17 @@ function LineChart(data, {
     yAxis = d3.axisLeft(yScale).ticks(height / 60, yFormat);
   
     // Compute titles.
-    var T = title === undefined ? Z : title === null ? null : d3.map(data, title);
+    T = title === undefined ? Z : title === null ? null : d3.map(data, title);
   
     // Construct a line generator.
-    var line = d3.line()
+    line = d3.line()
         .defined(i => D[i])
         .curve(curve)
         .x(i => xScale(X[i]))
         .y(i => yScale(Y[i]));
   
     // Create a svg with dimension constrains.
-    var svg = d3.select("#chart")
+    svg = d3.select("#chart")
         .append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -126,7 +141,7 @@ function LineChart(data, {
        .text("Month");
     
 
-    var path = svg.append("g")
+    path = svg.append("g")
         .attr("fill", "none")
         .attr("stroke", typeof color === "string" ? color : null)
         .attr("stroke-linecap", strokeLinecap)
@@ -140,7 +155,7 @@ function LineChart(data, {
         .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)
         .attr("d", ([, I]) => line(I));
   
-    var dot = svg.append("g")
+    dot = svg.append("g")
         .attr("display", "none");
   
     dot.append("circle")

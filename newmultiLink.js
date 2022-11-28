@@ -29,7 +29,7 @@ function pieChart() {
     // set the color scale
     color = d3.scaleOrdinal()
     .domain(["members", "causal"])
-    .range(d3.schemeDark2);
+    .range(d3.schemeCatagory10);
 
 }
 
@@ -148,7 +148,7 @@ function lineChart() {
             .attr("cx", function(d) { return x(+d.time) })
             .attr("cy", function(d) { return y(+d.UIC) })
             .attr("r", 7)
-            .style("fill", "#69b3a2")
+            .style("fill", "#ff8d00")
     
         // When the button is changed, run the updateChart function
         d3.select("#selectButton").on("change", function(d) {

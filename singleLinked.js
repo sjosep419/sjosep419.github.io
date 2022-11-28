@@ -10,7 +10,10 @@ var data2018 = [{"station":"900 W Harrison St","ridership":1789,"date":"2018-01-
 {"station":"900 W Harrison St","ridership":2714,"date":"2018-10-01T00:00:00.000Z"},
 {"station":"Sheffield Ave & Fullerton Ave","ridership":6702,"date":"2018-10-01T00:00:00.000Z"},
 {"station":"Sheridan Rd & Greenleaf Ave","ridership":513,"date":"2018-10-01T00:00:00.000Z"}]
-
+var xScale;
+var yScale;
+var xAxis;
+var yAxis;
 
 function LineChart(data, {
     x = ([x]) => x, // given d in data, returns the (temporal) x-value
@@ -60,10 +63,10 @@ function LineChart(data, {
     var I = d3.range(X.length).filter(i => zDomain.has(Z[i]));
   
     // Construct scales and axes.
-    var xScale = xType(xDomain, xRange);
-    var yScale = yType(yDomain, yRange);
-    var xAxis = d3.axisBottom(xScale).ticks(width / 80);
-    var yAxis = d3.axisLeft(yScale).ticks(height / 60, yFormat);
+    xScale = xType(xDomain, xRange);
+    yScale = yType(yDomain, yRange);
+    xAxis = d3.axisBottom(xScale).ticks(width / 80);
+    yAxis = d3.axisLeft(yScale).ticks(height / 60, yFormat);
   
     // Compute titles.
     var T = title === undefined ? Z : title === null ? null : d3.map(data, title);

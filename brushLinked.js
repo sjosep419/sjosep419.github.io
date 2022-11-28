@@ -79,7 +79,7 @@ function brushableScatterplot() {
      .attr("y", 13)
      .attr("text-anchor", "middle")
      .style("font-size", "16px")
-     .text("Travel Distance vs Rental Time");
+     .text("");
     
     const radius = 3;
     
@@ -159,7 +159,7 @@ function brushableScatterplot() {
      .attr("y", 15)
      .attr("text-anchor", "middle")
      .style("font-size", "16px")
-     .text("Total Bike Counts");
+     .text("");
     // create scales
     
     const x = d3.scaleLinear()

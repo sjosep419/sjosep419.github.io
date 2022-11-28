@@ -1,6 +1,10 @@
-var data2018 = [{"station":"900 W Harrison St","ridership":1789,"date":"2018-01-01T00:00:00.000Z"},{"station":"Sheffield Ave & Fullerton Ave","ridership":3856,"date":"2018-01-01T00:00:00.000Z"},{"station":"Sheridan Rd & Greenleaf Ave","ridership":347,"date":"2018-01-01T00:00:00.000Z"},{"station":"900 W Harrison St","ridership":3241,"date":"2018-04-01T00:00:00.000Z"},{"station":"Sheffield Ave & Fullerton Ave","ridership":9340,"date":"2018-04-01T00:00:00.000Z"},{"station":"Sheridan Rd & Greenleaf Ave","ridership":951,"date":"2018-04-01T00:00:00.000Z"}];
 
-function _LineChart(d3){return(
+async function raw1() {
+  const scsv = d3.dsvFormat(",");
+  return scsv.parse(await FileAttachment("csv2018@1.csv").text());
+}
+
+
   function LineChart(data, {
     x = ([x]) => x, // given d in data, returns the (temporal) x-value
     y = ([, y]) => y, // given d in data, returns the (quantitative) y-value
@@ -161,17 +165,26 @@ function _LineChart(d3){return(
     
     return Object.assign(svg.node(), {value: null});
   }
-  )}
+  
   function init() {
-    _LineChart(d3,LineChart(data2018, {
-        x: d => d.date,
-        y: d => d.ridership,
-        z: d => d.station,
-        yLabel: "↑ Ridership",
-        width: 640,
-        height:500,
-        color: "steelblue"
-      }));
+    const csv2018 = raw1();
+
+    const data2018 = csv2018.map(d => ({
+      station : d['stationName'],
+      ridership : parseInt(d['ridership']),
+      date : new Date(d['date'])
+    })).filter(d => d.uic !== null && d.depaul !== null && d.loyola !== null);
+
+    LineChart(data2018, {
+      x: d => d.date,
+      y: d => d.ridership,
+      z: d => d.station,
+      yLabel: "↑ Ridership",
+      width,
+      height:500,
+      color: "steelblue"
+    });
+
   }
 
 

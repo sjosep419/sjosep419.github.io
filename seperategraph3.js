@@ -8,9 +8,9 @@ new Runtime().module(define, name => {
 
 
 
-// function display2018() {
-//     Document.getElementById('viz').innerHTML = html`<div id="observablehq-chart1-62198941"></div>`;
-// }
+function display2018() {
+    Document.getElementById('viz').innerHTML = html`<div id="observablehq-chart1-62198941"></div>`;
+}
 
 
 // function display2020() {

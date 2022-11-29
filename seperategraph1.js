@@ -7,15 +7,10 @@ new Runtime().module(define, name => {
 });
 
 
-
-import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-import define from "https://api.observablehq.com/d/ffb3099e2ba5dd91.js?v=3";
 new Runtime().module(define, name => {
   if (name === "chart2") return new Inspector(document.querySelector("#observablehq-chart2-fc7e868f"));
   return ["focus2"].includes(name);
 });
-
-
 
 
 

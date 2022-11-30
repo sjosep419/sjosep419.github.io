@@ -1,3 +1,4 @@
+// function to create the brushable scatter plot
 function brushableScatterplot() {
     // set up
     const margin = ({top:10, right:20, bottom:50, left:105});
@@ -135,6 +136,7 @@ function brushableScatterplot() {
     return svg.node();
   }
 
+  // function to create the bar chart
   function barChart() {
     // set up
     

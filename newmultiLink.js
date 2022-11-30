@@ -1,3 +1,4 @@
+// Global variables that are shared through all functions
 var svg;
 var radius;
 var color;
@@ -191,16 +192,19 @@ function init() {
     lineChart();
 }
 
+// For UIC button of line chart
 function changeToUIC() {
     pieupdate(data1);
     lineupdate("UIC", lineData);
 }
 
+// For DePaul button of line chart
 function changeToDePaul() {
     pieupdate(data2);
     lineupdate("DePaul", lineData);
 }
 
+// For Loyola button of line chart
 function changeToLoyola() {
     pieupdate(data3);
     lineupdate("Loyola", lineData);

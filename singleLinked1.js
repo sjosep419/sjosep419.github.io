@@ -1,3 +1,4 @@
+// Global variable representing the dataset from college campuses from 2018
 var data2018 = [{"station":"900 W Harrison St","ridership":1789,"date":"2018-01-01T00:00:00.000Z"},
 {"station":"Sheffield Ave & Fullerton Ave","ridership":3856,"date":"2018-01-01T00:00:00.000Z"},
 {"station":"Sheridan Rd & Greenleaf Ave","ridership":347,"date":"2018-01-01T00:00:00.000Z"},
@@ -10,6 +11,8 @@ var data2018 = [{"station":"900 W Harrison St","ridership":1789,"date":"2018-01-
 {"station":"900 W Harrison St","ridership":2714,"date":"2018-10-01T00:00:00.000Z"},
 {"station":"Sheffield Ave & Fullerton Ave","ridership":6702,"date":"2018-10-01T00:00:00.000Z"},
 {"station":"Sheridan Rd & Greenleaf Ave","ridership":513,"date":"2018-10-01T00:00:00.000Z"}]
+
+// All variables used throughout the functions as a global variable
 var xScale;
 var yScale;
 var xAxis;
@@ -60,7 +63,7 @@ function LineChart(data, {
     mixBlendMode = "multiply", // blend mode of lines
     voronoi // show a Voronoi overlay? (for debugging)
   } = {}) {
-    // Compute values.
+    // Compute values - // Pull out passed in x, y, and z axes from dataset and store in new variables
     X = d3.map(data, x);
     Y = d3.map(data, y);
     Z = d3.map(data, z);
@@ -75,7 +78,7 @@ function LineChart(data, {
     zDomain = new d3.InternSet(zDomain);
   
     // Omit any data not present in the z-domain.
-    I = d3.range(X.length).filter(i => zDomain.has(Z[i]));
+    I = d3.range(X.length).filter(i => zDomain.has(Z[i])); // Stores indices for all elements in the zDomain InternSet
   
     // Construct scales and axes.
     xScale = xType(xDomain, xRange);
@@ -94,8 +97,8 @@ function LineChart(data, {
         .y(i => yScale(Y[i]));
   
     // Create a svg with dimension constrains.
-    svg = d3.select("#chart")
-        .append("svg")
+    svg = d3.select("#chart") // div in the index.html
+        .append("svg") // append the graph to the svg element of the div
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", [0, 0, width, height])
@@ -115,10 +118,12 @@ function LineChart(data, {
     //       .voronoi([0, 0, width, height])
     //       .render());
   
+    // Create xAxis
     svg.append("g")
         .attr("transform", `translate(0,${height - marginBottom})`)
         .call(xAxis)
   
+    // Create yAxis
     svg.append("g")
         .attr("transform", `translate(${marginLeft},0)`)
         .call(yAxis)
@@ -134,6 +139,7 @@ function LineChart(data, {
             .style("font-size", "12px")
             .text(yLabel));
     
+    // Create label for the x-axis
     svg.append("text")
        .attr("transform", "translate(" + (width/2) + " ," + (height) + ")")
        .style("text-anchor", "middle")
@@ -141,6 +147,7 @@ function LineChart(data, {
        .text("Month");
     
 
+    // What we believe the problem is -- should be adding data to the path element
     path = svg.append("g")
         .attr("fill", "none")
         .attr("stroke", typeof color === "string" ? color : null)
@@ -155,6 +162,7 @@ function LineChart(data, {
         .attr("stroke", typeof color === "function" ? ([z]) => color(z) : null)
         .attr("d", ([, I]) => line(I));
   
+    // Add dots at each input of the line
     dot = svg.append("g")
         .attr("display", "none");
   
@@ -192,6 +200,7 @@ function LineChart(data, {
     return Object.assign(svg.node(), {value: null});
   }
 
+  // init function called when window is loaded
   function init() {
     const lines = LineChart(data2018, {
         x: d => d.date,

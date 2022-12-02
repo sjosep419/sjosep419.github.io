@@ -178,4 +178,29 @@ function LineChart(data, {
       })
   }
 
+  // For UIC button of line chart
+function changeTo2018() {
+  LineChart(data2018, {
+    x: d => d.date,
+    y: d => d.ridership,
+    z: d => d.station,
+    yLabel: "↑ Ridership",
+    width: 640,
+    height:500,
+    color: "steelblue"
+  })
+}
+
+// For DePaul button of line chart
+function changeTo2020() {
+  LineChart(data2020, {
+    x: d => d.date,
+    y: d => d.ridership,
+    z: d => d.station,
+    yLabel: "↑ Ridership",
+    width: 640,
+    height:500,
+    color: "steelblue"
+  })
+}
   window.onload = init;

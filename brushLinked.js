@@ -245,5 +245,5 @@ function brushableScatterplot() {
     // intial state of bar chart
     bar.update(scatter.value);
   }
-
+  // load chart when window is loaded
   window.onload = init;

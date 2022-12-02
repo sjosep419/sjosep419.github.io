@@ -1,3 +1,4 @@
+// data used for the lines charts for single-linked view
 var data2018 = [{"station":"900 W Harrison St","ridership":1789,"date":"2018-01-01T00:00:00.000Z"},
 {"station":"Sheffield Ave & Fullerton Ave","ridership":3856,"date":"2018-01-01T00:00:00.000Z"},
 {"station":"Sheridan Rd & Greenleaf Ave","ridership":347,"date":"2018-01-01T00:00:00.000Z"},

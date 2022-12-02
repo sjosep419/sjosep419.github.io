@@ -353,5 +353,5 @@ function LineChart2018(data, {
     })
   }
 
-
+ // load chart when window loads
   window.onload = init;

@@ -1,3 +1,7 @@
+// Code citations:
+// https://d3-graph-gallery.com/graph/line_change_data.html
+// https://d3-graph-gallery.com/graph/pie_changeData.html
+
 // Global variables that are shared through all functions
 var svg;
 var radius;

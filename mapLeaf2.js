@@ -1,3 +1,5 @@
+// Code Citation:
+// https://bl.ocks.org/d3noob/9150014
 function createMap() {
     
     var map = L.map('map').setView([41.8781, -87.6298], 12);
@@ -16,7 +18,7 @@ function createMap() {
             .addTo(map);
     }
 }
-
+ // load chart when window loads
 function init() {
     createMap();
 }

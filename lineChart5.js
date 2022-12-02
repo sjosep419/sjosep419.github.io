@@ -333,7 +333,7 @@ function LineChart2018(data, {
   }
 
   function init() {
-    LineChart(data2018, "chart2018", {
+    LineChart2018(data2018, {
         x: d => d.date,
         y: d => d.ridership,
         z: d => d.station,
@@ -342,7 +342,7 @@ function LineChart2018(data, {
         height:500,
         color: "steelblue"
       })
-    LineChart(data2020, "chart2020", {
+    LineChart2020(data2020, {
       x: d => d.date,
       y: d => d.ridership,
       z: d => d.station,

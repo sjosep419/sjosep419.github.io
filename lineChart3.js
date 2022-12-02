@@ -1,6 +1,6 @@
 // Code Citation:
 // https://observablehq.com/@d3/multi-line-chart
-function LineChart(data, {
+function LineChart(data, divVar, {
     x = ([x]) => x, // given d in data, returns the (temporal) x-value
     y = ([, y]) => y, // given d in data, returns the (quantitative) y-value
     z = () => 1, // given d in data, returns the (categorical) z-value
@@ -69,7 +69,7 @@ function LineChart(data, {
         .y(i => yScale(Y[i]));
   
     // Create a svg with dimension constrains.
-    const svg = d3.select("#chart") // div in the index.html
+    const svg = d3.select(divVar) // div in the index.html
         .append("svg") // append the graph to the svg element of the div
         .attr("width", width)
         .attr("height", height)
@@ -167,7 +167,7 @@ function LineChart(data, {
   }
 
   function init() {
-    const lines = LineChart(data2018, {
+    LineChart(data2018, "chart2018", {
         x: d => d.date,
         y: d => d.ridership,
         z: d => d.station,
@@ -176,34 +176,16 @@ function LineChart(data, {
         height:500,
         color: "steelblue"
       })
+    LineChart(data2020, "chart2020", {
+      x: d => d.date,
+      y: d => d.ridership,
+      z: d => d.station,
+      yLabel: "↑ Ridership",
+      width: 640,
+      height:500,
+      color: "steelblue"
+    })
   }
 
-  // For UIC button of line chart
-function changeTo2018() {
 
-  LineChart(data2018, {
-    x: d => d.date,
-    y: d => d.ridership,
-    z: d => d.station,
-    yLabel: "↑ Ridership",
-    width: 640,
-    height:500,
-    color: "steelblue"
-  })
-  d3.select("#chart").append("svg").exit().remove()
-}
-
-// For DePaul button of line chart
-function changeTo2020() {
-  LineChart(data2020, {
-    x: d => d.date,
-    y: d => d.ridership,
-    z: d => d.station,
-    yLabel: "↑ Ridership",
-    width: 640,
-    height:500,
-    color: "steelblue"
-  })
-  d3.select("#chart").append("svg").exit().remove()
-}
   window.onload = init;

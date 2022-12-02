@@ -180,6 +180,7 @@ function LineChart(data, {
 
   // For UIC button of line chart
 function changeTo2018() {
+
   LineChart(data2018, {
     x: d => d.date,
     y: d => d.ridership,
@@ -189,6 +190,7 @@ function changeTo2018() {
     height:500,
     color: "steelblue"
   })
+  d3.select("#chart").append("svg").exit().remove()
 }
 
 // For DePaul button of line chart
@@ -202,5 +204,6 @@ function changeTo2020() {
     height:500,
     color: "steelblue"
   })
+  d3.select("#chart").append("svg").exit().remove()
 }
   window.onload = init;
